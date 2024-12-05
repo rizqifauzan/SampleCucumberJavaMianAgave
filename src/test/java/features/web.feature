@@ -17,7 +17,7 @@ Feature: Test Automation Web
     Then the user will see login failed "Login failed! Please ensure the username and password are valid."
 
   @web
-  Scenario:Test Boundaries of comment limit
+  Scenario:Test Boundaries of comment limits
     Given open web login page
     And user input Username "John Doe"
     And user input Password "ThisIsNotAPassword"
