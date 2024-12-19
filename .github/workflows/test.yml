@@ -1,0 +1,45 @@
+name: Run JUnit CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  automation-JUnit:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '22'
+          distribution: 'temurin'
+
+      - name: Set up Chrome (latest)
+        uses: browser-actions/setup-chrome@v1.7.2
+        with:
+          version: 'latest'
+
+      - name: Build with Gradle
+        run:
+          chmod +x gradlew
+          ./gradlew build
+
+      - name: Run test
+        run: ./gradlew clean test
+
+      - name: Archive test results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cucumber reports
+          path: target/cucumber-reports/*.html
