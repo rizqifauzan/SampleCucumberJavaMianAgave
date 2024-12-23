@@ -26,9 +26,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - uses: browser-actions/setup-chrome@v1
+      - name:  Set up Chrome and WebDriver
+        uses: browser-actions/setup-chrome@v1
         with:
-          chrome-version: latest
+            chrome-version: latest
 
       - name: Build with Gradle
         run: |
@@ -42,4 +43,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: cucumber-report
-          path: cucumber-reports.html
+          path:  target/cucumber-reports.html
