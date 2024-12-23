@@ -27,10 +27,10 @@ jobs:
       - name: Set up Chrome (latest)
         uses: browser-actions/setup-chrome@v1.7.2
         with:
-          version: 'latest'
+          version: 'stable'
 
       - name: Build with Gradle
-        run:
+        run: |
           chmod +x gradlew
           ./gradlew build
 
