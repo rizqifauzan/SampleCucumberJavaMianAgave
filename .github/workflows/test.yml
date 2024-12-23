@@ -23,7 +23,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '22'
+          java-version: '17'
           distribution: 'temurin'
 
       - uses: browser-actions/setup-chrome@v1
@@ -42,4 +42,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: cucumber-report
-          path: target/cucumber-reports/
+          path: cucumber-reports.html
