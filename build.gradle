@@ -21,6 +21,7 @@ dependencies {
 
 test {
     useJUnit()
+    outputs.upToDateWhen { false }
 }
 
 

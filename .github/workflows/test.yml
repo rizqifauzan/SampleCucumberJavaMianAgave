@@ -11,7 +11,7 @@ permissions:
   id-token: write
 jobs:
   automation-JUnit:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
 
@@ -24,10 +24,9 @@ jobs:
           java-version: '22'
           distribution: 'temurin'
 
-      - name: Set up Chrome (latest)
-        uses: browser-actions/setup-chrome@v1.7.2
+      - uses: browser-actions/setup-chrome@v1
         with:
-          version: 'stable'
+          chrome-version: latest
 
       - name: Build with Gradle
         run: |
@@ -37,9 +36,8 @@ jobs:
       - name: Run test
         run: ./gradlew clean test
 
-      - name: Archive test results
+      - name: Upload Cucumber Report
         uses: actions/upload-artifact@v3
-        if: always()
         with:
-          name: cucumber reports
-          path: target/cucumber-reports/*.html
+          name: cucumber-report
+          path: target/cucumber-reports/
